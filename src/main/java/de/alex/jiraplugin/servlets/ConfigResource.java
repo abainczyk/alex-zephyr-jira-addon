@@ -108,8 +108,6 @@ public class ConfigResource {
                 }
             }
 
-            config.setDisableTestSteps(Boolean.valueOf((String) settings.get(Config.class.getName() + ".disableTestSteps")));
-
             return config;
         })).build();
     }
@@ -156,7 +154,6 @@ public class ConfigResource {
             PluginSettings pluginSettings = pluginSettingsFactory.createGlobalSettings();
             pluginSettings.put(Config.class.getName() + ".url", url);
             pluginSettings.put(Config.class.getName() + ".issueType", config.getIssueType());
-            pluginSettings.put(Config.class.getName() + ".disableTestSteps", String.valueOf(config.isDisableTestSteps()));
             return null;
         });
 

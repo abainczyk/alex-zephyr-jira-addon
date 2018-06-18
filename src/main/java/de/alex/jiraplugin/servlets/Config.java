@@ -40,9 +40,6 @@ public class Config {
     @XmlElement
     private String issueType;
 
-    @XmlElement
-    private boolean disableTestSteps;
-
     public String getUrl() {
         return url;
     }
@@ -59,11 +56,4 @@ public class Config {
         this.issueType = issueType;
     }
 
-    public boolean isDisableTestSteps() {
-        return disableTestSteps;
-    }
-
-    public void setDisableTestSteps(boolean disableTestSteps) {
-        this.disableTestSteps = disableTestSteps;
-    }
 }

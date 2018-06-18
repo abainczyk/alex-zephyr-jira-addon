@@ -1,40 +1,42 @@
-<h2 class="dialog-title">Execute test in ALEX</h2>
+<div id="afj-execute-test-dialog">
+  <h2 class="dialog-title">Execute test in ALEX</h2>
 
-<div class="content-body">
-  <div style="padding: 20px 15px">
+  <div class="content-body">
+    <div style="padding: 20px 15px">
 
-    <div class="messages">
-    </div>
+      <div class="messages">
+      </div>
 
-    <p style="margin-bottom: 15px">
-      Select the system where the test should be executed.
-    </p>
+      <p style="margin-bottom: 15px">
+        Select the system where the test should be executed.
+      </p>
 
-    <form class="data">
-      <input type="hidden" name="jiraProjectId" value="$jiraProjectId">
-      <input type="hidden" name="testId" value="$testId">
-    </form>
+      <form class="data">
+        <input type="hidden" name="jiraProjectId" value="$jiraProjectId">
+        <input type="hidden" name="testId" value="$testId">
+      </form>
 
-    <div class="alex-list-group">
-        #foreach($url in $alexProject.urls)
-          <div class="alex-list-group-item" data-id="$url.id">
-            <div>
-              <strong>
-                #if(!$url.name) Unnamed #else $url.name #end
-              </strong>
+      <div class="alex-list-group">
+          #foreach($url in $alexProject.urls)
+            <div class="alex-list-group-item" data-id="$url.id">
+              <div>
+                <strong>
+                    #if(!$url.name) Unnamed #else $url.name #end
+                </strong>
+              </div>
+              <small>$url.url</small>
             </div>
-            <small>$url.url</small>
-          </div>
-        #end
+          #end
+      </div>
+
     </div>
-
   </div>
-</div>
 
-<div class="buttons-container content-footer">
-  <div class="buttons">
-    <button class="aui-button aui-button-primary execute">Execute</button>
-    <button class="aui-button cancel">Cancel</button>
+  <div class="buttons-container content-footer">
+    <div class="buttons">
+      <button class="aui-button aui-button-primary execute">Execute</button>
+      <button class="aui-button cancel">Cancel</button>
+    </div>
   </div>
 </div>
 

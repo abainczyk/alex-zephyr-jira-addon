@@ -72,7 +72,6 @@ public class ExecuteResource {
         }
 
         try {
-
             final ClientResponse response = ClientUtils.createDefaultResource(client, url + "/rest/executions")
                     .entity(config)
                     .post(ClientResponse.class);

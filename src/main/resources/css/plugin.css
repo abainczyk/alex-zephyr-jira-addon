@@ -2,9 +2,17 @@
  * The item that would be displayed before the menu collapses.
  * Removing this results in a standalone dropdown menu.
  */
-#my-item-link-dummy {
+#afj-menu-item-dummy-1,
+#afj-menu-item-dummy-2 {
     display: none;
 }
+
+
+/* Add padding to the test execute dialog content */
+.page-issue-navigator #afj-execute-test-dialog .content-body {
+    padding: 20px !important;
+}
+
 
 /*
  * The dropdown button.
@@ -12,15 +20,25 @@
  * Since we removed the first button in a button group, the border
  * radius of the dropdown button has to be adjusted.
  */
-#my-opsbar-operations_more {
+#afj-opsbar-operations_more {
+    border-left: 1px solid #ccc;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
 
+/* Adjust styling of the dropdown menu */
+#afj-opsbar-operations_more:hover,
+#afj-opsbar-operations_more:active,
+#afj-opsbar-operations_more:focus {
+    margin-left: 0;
+    border-left: 1px solid #999;
+}
+
+
 /*
  * This adds an icon in the web section of the dropdown menu.
  */
-#my-opsbar-operations_more > .dropdown-text::before {
+#afj-opsbar-operations_more > .dropdown-text::before {
     content: "";
     background: url("images/alex-button-icon.png") no-repeat;
     display: inline-block;
@@ -29,6 +47,7 @@
     vertical-align: text-top;
     margin-right: 4px;
 }
+
 
 .alex-list-group {
     border-radius: 4px;

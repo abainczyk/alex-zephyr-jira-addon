@@ -16,6 +16,6 @@
 
 package de.alex.jiraplugin.plugin.api;
 
-public interface MyPluginComponent {
+public interface AlexForJiraComponent {
     String getName();
 }

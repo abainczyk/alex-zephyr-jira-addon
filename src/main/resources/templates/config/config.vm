@@ -6,22 +6,30 @@
   <meta name="decorator" content="atl.admin">
     $webResourceManager.requireResource("com.atlassian.auiplugin:ajs")
     $webResourceManager.requireResource("com.atlassian.auiplugin:aui-form-validation")
-    $webResourceManager.requireResource("de.alex.jiraplugin.jiraPlugin:jiraPlugin-config-resources")
+    $webResourceManager.requireResource("de.alex.jiraplugin.jiraPlugin:afj-config-page-resources")
 
   <style>
     #messages {
       margin-top: 4px;
+    }
+
+    .aui-page-panel-content hr {
+      border: none;
+      border-top: 1px solid #cccccc;
     }
   </style>
 </head>
 <body>
 
 <h4>Configuration</h4>
+<hr>
+
+<div id="messages"></div>
 
 <form id="config-form" class="aui top-label">
   <fieldset class="top-label">
     <div class="field-group top-label">
-      <label for="name">URL of the adapter</label>
+      <label for="name">URL of the ALEX for Jira adapter</label>
       <input
           type="url"
           id="url"
@@ -50,17 +58,11 @@
           #end
       </select>
     </div>
-    <div class="checkbox">
-      <input class="checkbox" type="checkbox" name="disableTestSteps" id="disableTestSteps">
-      <label for="disableTestSteps">Disable test steps</label>
-    </div>
     <div class="field-group">
       <input type="submit" value="Save" class="button">
     </div>
   </fieldset>
 </form>
-
-<div id="messages"></div>
 
 </body>
 </html>

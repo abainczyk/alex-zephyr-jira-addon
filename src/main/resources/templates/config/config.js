@@ -6,12 +6,10 @@
 
     var url = $('#url').attr('value');
     var issueType = $('#issueType').attr('value');
-    var disableTestSteps = $('#disableTestSteps').prop('checked');
 
     var data = JSON.stringify({
       url: url,
-      issueType: issueType,
-      disableTestSteps: disableTestSteps
+      issueType: issueType
     });
 
     $.ajax({
@@ -38,7 +36,6 @@
     }).done(function (config) {
       $('#url').val(config.url);
       $('#issueType').val(config.issueType);
-      $('#disableTestSteps').prop('checked', config.disableTestSteps);
     });
 
     // use the aui submit event so that the validation mechanism kicks in.
