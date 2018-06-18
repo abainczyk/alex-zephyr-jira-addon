@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/plugin-icon.png</param>
+    <param name="plugin-logo">images/plugin-logo.png</param>
+  </plugin-info>
+
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="jiraPlugin"/>
+
+  <!-- add our web resources -->
+  <web-resource key="jiraPlugin-issue-resources" name="jiraPlugin Issue Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="images/" location="/images"/>
+    <resource type="download" name="plugin.css" location="/css/plugin.css"/>
+    <resource type="download" name="plugin.js" location="/js/plugin.js"/>
+    <context>jira.view.issue</context>
+  </web-resource>
+
+  <web-resource key="jiraPlugin-config-resources" name="jiraPlugin Admin Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="images/" location="/images"/>
+    <resource type="download" name="config.js" location="/templates/config/config.js"/>
+    <context>atl.admin</context>
+  </web-resource>
+
+  <!-- The ALEX dropdown menu -->
+  <web-section key="my-opsbar-operations" name="Ops Bar Operations Section" location="view.issue.opsbar" weight="200">
+    <label key="my-opsbar.more.operations"/>
+    <condition class="de.alex.jiraplugin.conditions.DisplayAlexDropdownMenuCondition">
+      <param name="issue">$issue</param>
+    </condition>
+    <param name="iconClass" value="aui-icon aui-icon-small aui-iconfont-comment icon-comment" />
+  </web-section>
+
+    <web-section key="my-operations-top-level" name="Ops Bar Operations Top level Section" location="my-opsbar-operations" weight="10"/>
+
+        <!-- dummy - is removed, but without it the section is not displayed as dropdown -->
+        <web-item name="myItem" i18n-name-key="my-item.name" key="my-item-icon" section="my-operations-top-level" weight="1">
+          <description key="my-item.description">Dummy item that is removed.</description>
+          <label key="my-item-icon.label"/>
+          <link linkId="my-item-link-dummy">/</link>
+        </web-item>
+
+        <web-item name="myItem" i18n-name-key="my-item.name" key="my-item" section="my-operations-top-level" weight="10">
+          <description key="my-item.description">The button that executes the test.</description>
+          <label key="my-item.label"/>
+          <link linkId="my-item-link">/ExecuteTestDialog!execute.jspa?projectId=$project.id&amp;testId=$issue.id</link>
+        </web-item>
+
+        <web-item name="myItem2" i18n-name-key="my-item-2.name" key="my-item-2" section="my-operations-top-level" weight="20">
+          <description key="my-item-2.description">The "edit" button that redirects to the adapter.</description>
+          <label key="my-item-2.label"/>
+          <context-provider class="de.alex.jiraplugin.providers.UrlContextProvider"/>
+          <link linkId="my-item-2-link">$url/#/app/projects/$project.id/tests/$issue.id</link>
+        </web-item>
+
+  <!-- the logic for the pop up dialog that appears when the "execute" button is clicked -->
+  <webwork1 key="my-webwork-module" name="MyWebworkModule" i18n-name-key="my-webwork-module.name">
+    <description key="my-webwork-module.description">The execution dialog.</description>
+    <actions>
+      <action name="de.alex.jiraplugin.dialogs.ExecuteTestDialog" alias="ExecuteTestDialog">
+        <view name="error">/templates/execute-test-dialog/error.vm</view>
+        <view name="dialog">/templates/execute-test-dialog/dialog.vm</view>
+      </action>
+    </actions>
+  </webwork1>
+
+  <!-- menu items for the left sidebar in the add on page -->
+  <web-section name="PluginConfigSection" i18n-name-key="plugin-config-section.name" key="plugin-config-section" location="admin_plugins_menu" weight="1000">
+    <description key="plugin-config-section.description">The section element that is displayed in the plugins menu.</description>
+    <label key="plugin-config-section.label"/>
+  </web-section>
+
+    <web-item name="config" i18n-name-key="config.name" key="config" section="admin_plugins_menu/plugin-config-section" weight="1000">
+      <description key="config.description">The item that leads to the configuration page.</description>
+      <label key="config.label"/>
+      <link linkId="config-link">/plugins/servlet/alex/config</link>
+    </web-item>
+
+  <!-- servlet for the plugin configuration -->
+  <servlet name="Config Servlet" i18n-name-key="config-servlet.name" key="config-servlet" class="de.alex.jiraplugin.servlets.ConfigServlet">
+    <description key="config-servlet.description">The servlet for the configuration page for the add-on.</description>
+    <url-pattern>/alex/config</url-pattern>
+  </servlet>
+
+  <rest key="rest" path="/alex" version="1.0">
+    <description>Provides REST resources for the admin UI.</description>
+  </rest>
+
+</atlassian-plugin>

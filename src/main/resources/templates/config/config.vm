@@ -1,0 +1,66 @@
+<!Doctype html>
+<html>
+<head>
+  <title>ALEX for Jira</title>
+
+  <meta name="decorator" content="atl.admin">
+    $webResourceManager.requireResource("com.atlassian.auiplugin:ajs")
+    $webResourceManager.requireResource("com.atlassian.auiplugin:aui-form-validation")
+    $webResourceManager.requireResource("de.alex.jiraplugin.jiraPlugin:jiraPlugin-config-resources")
+
+  <style>
+    #messages {
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h4>Configuration</h4>
+
+<form id="config-form" class="aui top-label">
+  <fieldset class="top-label">
+    <div class="field-group top-label">
+      <label for="name">URL of the adapter</label>
+      <input
+          type="url"
+          id="url"
+          name="url"
+          class="text"
+          placeholder="http://..."
+          value="http://"
+          required
+          data-aui-validation-field
+          data-aui-validation-pattern="^https?:\/\/.+"
+          data-aui-validation-pattern-msg="Not a valid URL"
+      >
+    </div>
+    <div class="field-group top-label">
+      <label for="name">Issue type where ALEX related actions are displayed</label>
+      <select
+          id="issueType"
+          name="issueType"
+          class="select"
+          required
+          data-aui-validation-field
+          data-aui-validation-required>
+
+          #foreach($issueType in $issueTypes)
+            <option value="$issueType.getId()">$issueType.getName()</option>
+          #end
+      </select>
+    </div>
+    <div class="checkbox">
+      <input class="checkbox" type="checkbox" name="disableTestSteps" id="disableTestSteps">
+      <label for="disableTestSteps">Disable test steps</label>
+    </div>
+    <div class="field-group">
+      <input type="submit" value="Save" class="button">
+    </div>
+  </fieldset>
+</form>
+
+<div id="messages"></div>
+
+</body>
+</html>

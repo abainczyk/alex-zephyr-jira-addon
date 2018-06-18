@@ -1,0 +1,66 @@
+/*
+ * The item that would be displayed before the menu collapses.
+ * Removing this results in a standalone dropdown menu.
+ */
+#my-item-link-dummy {
+    display: none;
+}
+
+/*
+ * The dropdown button.
+ *
+ * Since we removed the first button in a button group, the border
+ * radius of the dropdown button has to be adjusted.
+ */
+#my-opsbar-operations_more {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+/*
+ * This adds an icon in the web section of the dropdown menu.
+ */
+#my-opsbar-operations_more > .dropdown-text::before {
+    content: "";
+    background: url("images/alex-button-icon.png") no-repeat;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    vertical-align: text-top;
+    margin-right: 4px;
+}
+
+.alex-list-group {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+}
+
+.alex-list-group .alex-list-group-item {
+    padding: 6px 12px;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    margin-top: -1px;
+}
+
+.alex-list-group .alex-list-group-item:hover {
+    cursor: pointer;
+    background: #f5f5f5;
+}
+
+.alex-list-group .alex-list-group-item:first-of-type {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.alex-list-group .alex-list-group-item:last-of-type {
+    border-bottom: 0;
+}
+
+.alex-list-group .alex-list-group-item.active {
+    background: #3572b0;
+    color: #fff;
+}
+
+.alex-list-group .alex-list-group-item.active small {
+    color: rgba(255, 255, 255, .8);
+}

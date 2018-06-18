@@ -1,0 +1,16 @@
+<h2 class="dialog-title">Execute in ALEX</h2>
+
+<div class="content-body">
+  <div class="aui-message aui-message-error">
+    <p class="title">
+      <strong>Error! The test could not be executed in ALEX.</strong>
+    </p>
+    <p>$errorMessage</p>
+  </div>
+</div>
+
+<div class="buttons-container content-footer">
+  <div class="buttons">
+    <button class="aui-button cancel">Ok</button>
+  </div>
+</div>
