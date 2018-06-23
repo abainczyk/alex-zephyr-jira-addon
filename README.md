@@ -2,12 +2,11 @@
 
 *ALEX for Jira* is an add-on for Jira Server, written in Java, that allows the execution of *Zephyr* tests in the test automation tool [ALEX][alex].
 For this to work, it requires a running installation of the [ALEX for Jira adapter][alex-adapter] and ALEX.
-This add-on serves three purposes:
+This add-on serves two purposes:
 
 * It embeds a button to the operations bar of a Zephyr test.
   The button enables users to execute the test in ALEX, under the assumption that a mapping between the test and ALEX has been defined in the adapter.
 * It listens on issue and project related events in Jira and sends them to the adapter in order for the tests to stay in sync.
-* It disables manual test step editing because they are generated automatically by the adapter.  
 
 ## Requirements
 
@@ -38,7 +37,7 @@ Note that if ALEX and Jira are installed on different machines in the same netwo
 
 ```bash
 # 1. Clone the repository
-git clone https://abainczyk@bitbucket.org/abainczyk/alex-zephyr-jira-plugin-2.git
+git clone ...
 
 # 2. Navigate to the project directory
 cd alex-zephyr-jira-plugin
@@ -47,7 +46,7 @@ cd alex-zephyr-jira-plugin
 atlas-mvn clean package
 ```
 
-The generated add-on can then be located in the `target` directory.
+The generated add-on is then be located in the `target` directory.
 The file is called `alex-for-jira-1.0.0-SNAPSHOT.jar`.
 
 
@@ -79,7 +78,7 @@ Now, on every issue that is a Zephyr test, a dropdown menu with the label *"ALEX
 
 
 [alex]: https://github.com/learnlib/alex
-[alex-adapter]: #
+[alex-adapter]: https://bitbucket.org/abainczyk/alex-zephyr-jira-adapter
 [jira]: https://de.atlassian.com/software/jira/download
 [zephyr]: https://marketplace.atlassian.com/apps/1014681/zephyr-for-jira-test-management?hosting=server
 [zapi]: https://marketplace.atlassian.com/apps/1211674/zapi?hosting=server&tab=overview
