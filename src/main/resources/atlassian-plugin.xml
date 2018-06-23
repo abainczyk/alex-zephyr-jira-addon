@@ -60,7 +60,7 @@
       <web-item name="Dropdown execute button" i18n-name-key="operations-execute-item.name" key="operations-execute-item" section="operations-section" weight="10">
         <description key="operations-execute-item.description"/>
         <label key="operations-execute-item.label"/>
-        <link linkId="afj-operations-execute-item">/ExecuteTestDialog!execute.jspa?projectId=$project.id&amp;testId=$issue.id</link>
+        <link linkId="afj-operations-execute-item">/ExecuteTestDialog!execute.jspa?projectId=$project.id&amp;jiraTestId=$issue.id</link>
       </web-item>
 
 

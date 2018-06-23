@@ -25,7 +25,7 @@ import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
-import de.alex.jiraplugin.entities.Project;
+import de.alex.jiraplugin.entities.AlexProject;
 import de.alex.jiraplugin.servlets.Config;
 import de.alex.jiraplugin.utils.ClientUtils;
 import org.slf4j.Logger;
@@ -44,13 +44,13 @@ public class ExecuteTestDialog extends JiraWebActionSupport {
     private String errorMessage = "";
 
     /** The project in ALEX that is used for displaying the target URLs. */
-    private Project alexProject;
+    private AlexProject alexProject;
 
     /** The id of the current jira project. */
     private String jiraProjectId;
 
     /** The id of the current test. */
-    private String testId;
+    private String jiraTestId;
 
     @ComponentImport
     private final PluginSettingsFactory pluginSettingsFactory;
@@ -74,10 +74,10 @@ public class ExecuteTestDialog extends JiraWebActionSupport {
             return "error";
         }
 
-        testId = getHttpRequest().getParameter("testId");
+        jiraTestId = getHttpRequest().getParameter("jiraTestId");
         jiraProjectId = getHttpRequest().getParameter("projectId");
 
-        final Issue issue = issueManager.getIssueObject(Long.parseLong(testId));
+        final Issue issue = issueManager.getIssueObject(Long.parseLong(jiraTestId));
         if (issue.getAssigneeId() == null) {
             errorMessage = "The test is not assigned to a person yet.";
             return "error";
@@ -88,7 +88,7 @@ public class ExecuteTestDialog extends JiraWebActionSupport {
             final ClientResponse response = ClientUtils.createDefaultResource(client, url + "/rest/alex/projects/byJiraProject/" + jiraProjectId)
                     .get(ClientResponse.class);
 
-            alexProject = response.getEntity(Project.class);
+            alexProject = response.getEntity(AlexProject.class);
 
             return "dialog";
         } catch (Exception e) {
@@ -102,7 +102,7 @@ public class ExecuteTestDialog extends JiraWebActionSupport {
         return errorMessage;
     }
 
-    public Project getAlexProject() {
+    public AlexProject getAlexProject() {
         return alexProject;
     }
 
@@ -110,8 +110,7 @@ public class ExecuteTestDialog extends JiraWebActionSupport {
         return jiraProjectId;
     }
 
-    public String getTestId() {
-        return testId;
+    public String getJiraTestId() {
+        return jiraTestId;
     }
-
 }

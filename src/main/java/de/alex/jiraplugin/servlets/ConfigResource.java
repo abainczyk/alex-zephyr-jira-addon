@@ -67,7 +67,8 @@ public class ConfigResource {
     /**
      * Get the plugin configuration.
      *
-     * @param request The HTTP request from the page.
+     * @param request
+     *         The HTTP request from the page.
      * @return The plugin configuration.
      */
     @GET
@@ -115,8 +116,10 @@ public class ConfigResource {
     /**
      * Update the plugin configuration.
      *
-     * @param config  The updated configuration object.
-     * @param request The HTTP request.
+     * @param config
+     *         The updated configuration object.
+     * @param request
+     *         The HTTP request.
      * @return 204 on success.
      */
     @PUT
@@ -159,5 +162,4 @@ public class ConfigResource {
 
         return Response.noContent().build();
     }
-
 }

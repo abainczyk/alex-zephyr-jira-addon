@@ -19,7 +19,6 @@ package de.alex.jiraplugin.events;
 import com.atlassian.event.api.EventListener;
 import com.atlassian.event.api.EventPublisher;
 import com.atlassian.jira.event.ProjectDeletedEvent;
-import com.atlassian.jira.event.ProjectUpdatedEvent;
 import com.atlassian.jira.project.Project;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
@@ -34,6 +33,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -83,8 +84,8 @@ public class ProjectEventListener implements InitializingBean, DisposableBean {
 
         new Thread(() -> client.resource(url + "/rest/wh/jira/projects")
                 .entity(data)
-                .header("Content-Type", "application/json;charset=UTF-8")
-                .accept("application/json", "text/plain", "*/*")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
+                .accept(MediaType.MEDIA_TYPE_WILDCARD)
                 .post(ClientResponse.class)
         ).start();
     }

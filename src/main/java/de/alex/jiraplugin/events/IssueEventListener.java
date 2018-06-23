@@ -34,6 +34,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -104,8 +106,8 @@ public class IssueEventListener implements InitializingBean, DisposableBean {
 
         new Thread(() -> client.resource(url + "/rest/wh/jira/issues")
                 .entity(data)
-                .header("Content-Type", "application/json;charset=UTF-8")
-                .accept("application/json", "text/plain", "*/*")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
+                .accept(MediaType.MEDIA_TYPE_WILDCARD)
                 .post(ClientResponse.class)
         ).start();
     }

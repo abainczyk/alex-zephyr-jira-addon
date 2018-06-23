@@ -1,5 +1,5 @@
 <div id="afj-execute-test-dialog">
-  <h2 class="dialog-title">Execute in ALEX</h2>
+  <h2 class="dialog-title">Execute test in ALEX</h2>
 
   <div class="content-body">
     <div class="aui-message aui-message-error">

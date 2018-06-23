@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /** The entity for a URL in an ALEX project. */
 @XmlRootElement
-public class ProjectUrl {
+public class AlexProjectUrl {
 
     /** The id of the URL in the database of ALEX. */
     private Long id;

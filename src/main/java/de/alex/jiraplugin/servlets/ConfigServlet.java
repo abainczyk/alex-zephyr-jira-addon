@@ -62,5 +62,4 @@ public class ConfigServlet extends HttpServlet {
 
         renderer.render("templates/config/config.vm", map, resp.getWriter());
     }
-
 }

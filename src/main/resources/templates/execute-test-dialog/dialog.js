@@ -44,21 +44,21 @@
     });
   });
 
-  dialogEl.find('.alex-list-group-item').click(function() {
+  dialogEl.find('.afj-list-group-item').click(function() {
     var self = $(this);
 
     data = getFormData();
-    data.urlId = parseInt(self.data('id'));
+    data.alexUrlId = parseInt(self.data('id'));
 
-    dialogEl.find('.alex-list-group-item').removeClass('active');
+    dialogEl.find('.afj-list-group-item').removeClass('active');
     self.addClass('active');
   });
 
   function getFormData() {
     return {
-      jiraProjectId: dialogEl.find('input[name="jiraProjectId"]').val(),
-      testId: dialogEl.find('input[name="testId"]').val(),
-      urlId: null
+      jiraProjectId: parseInt(dialogEl.find('input[name="jiraProjectId"]').val()),
+      jiraTestId: parseInt(dialogEl.find('input[name="jiraTestId"]').val()),
+      alexUrlId: null
     };
   }
 })(AJS || {}, AJS.$ || jQuery);

@@ -55,5 +55,4 @@ public class Config {
     public void setIssueType(String issueType) {
         this.issueType = issueType;
     }
-
 }

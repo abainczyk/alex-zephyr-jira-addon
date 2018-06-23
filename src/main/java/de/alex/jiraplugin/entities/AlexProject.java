@@ -22,7 +22,7 @@ import java.util.List;
 
 /** Entity for a project in ALEX. */
 @XmlRootElement
-public class Project {
+public class AlexProject {
 
     /** The id of the project in the db. */
     private Long id;
@@ -34,9 +34,9 @@ public class Project {
     private Long user;
 
     /** The list of URLs that are registered to the project. */
-    private List<ProjectUrl> urls;
+    private List<AlexProjectUrl> urls;
 
-    public Project() {
+    public AlexProject() {
         this.urls = new ArrayList<>();
     }
 
@@ -64,11 +64,11 @@ public class Project {
         this.user = user;
     }
 
-    public List<ProjectUrl> getUrls() {
+    public List<AlexProjectUrl> getUrls() {
         return urls;
     }
 
-    public void setUrls(List<ProjectUrl> urls) {
+    public void setUrls(List<AlexProjectUrl> urls) {
         this.urls = urls;
     }
 }

@@ -72,7 +72,7 @@ public class ExecuteResource {
         }
 
         try {
-            final ClientResponse response = ClientUtils.createDefaultResource(client, url + "/rest/executions")
+            final ClientResponse response = ClientUtils.createDefaultResource(client, url + "/rest/jira/projects/" + config.getJiraProjectId() + "/tests/" + config.getJiraTestId() + "/execute")
                     .entity(config)
                     .post(ClientResponse.class);
 

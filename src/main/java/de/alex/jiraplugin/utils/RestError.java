@@ -44,5 +44,4 @@ public class RestError {
     public String getMessage() {
         return message;
     }
-
 }

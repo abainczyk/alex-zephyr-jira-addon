@@ -48,38 +48,40 @@
     margin-right: 4px;
 }
 
-
-.alex-list-group {
+/*
+ * List group for URLs.
+ */
+.afj-list-group {
     border-radius: 4px;
     border: 1px solid #cccccc;
 }
 
-.alex-list-group .alex-list-group-item {
+.afj-list-group .afj-list-group-item {
     padding: 6px 12px;
     border-top: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
     margin-top: -1px;
 }
 
-.alex-list-group .alex-list-group-item:hover {
+.afj-list-group .afj-list-group-item:hover {
     cursor: pointer;
     background: #f5f5f5;
 }
 
-.alex-list-group .alex-list-group-item:first-of-type {
+.afj-list-group .afj-list-group-item:first-of-type {
     margin-top: 0;
     border-top: 0;
 }
 
-.alex-list-group .alex-list-group-item:last-of-type {
+.afj-list-group .afj-list-group-item:last-of-type {
     border-bottom: 0;
 }
 
-.alex-list-group .alex-list-group-item.active {
+.afj-list-group .afj-list-group-item.active {
     background: #3572b0;
     color: #fff;
 }
 
-.alex-list-group .alex-list-group-item.active small {
+.afj-list-group .afj-list-group-item.active small {
     color: rgba(255, 255, 255, .8);
 }

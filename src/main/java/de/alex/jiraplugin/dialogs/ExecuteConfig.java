@@ -23,36 +23,35 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ExecuteConfig {
 
     /** The id of the project in Jira that contains the test. */
-    private String jiraProjectId;
+    private Long jiraProjectId;
 
     /** The id of the test to execute. */
-    private String testId;
+    private Long jiraTestId;
 
     /** The id of the URL entity in ALEX where the test is being executed on. */
-    private Long urlId;
+    private Long alexUrlId;
 
-    public String getJiraProjectId() {
+    public Long getJiraProjectId() {
         return jiraProjectId;
     }
 
-    public void setJiraProjectId(String jiraProjectId) {
+    public void setJiraProjectId(Long jiraProjectId) {
         this.jiraProjectId = jiraProjectId;
     }
 
-    public String getTestId() {
-        return testId;
+    public Long getJiraTestId() {
+        return jiraTestId;
     }
 
-    public void setTestId(String testId) {
-        this.testId = testId;
+    public void setJiraTestId(Long jiraTestId) {
+        this.jiraTestId = jiraTestId;
     }
 
-    public Long getUrlId() {
-        return urlId;
+    public Long getAlexUrlId() {
+        return alexUrlId;
     }
 
-    public void setUrlId(Long urlId) {
-        this.urlId = urlId;
+    public void setAlexUrlId(Long alexUrlId) {
+        this.alexUrlId = alexUrlId;
     }
-
 }

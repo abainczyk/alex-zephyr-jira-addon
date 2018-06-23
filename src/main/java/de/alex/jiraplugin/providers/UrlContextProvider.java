@@ -28,8 +28,8 @@ import javax.inject.Inject;
 import java.util.Map;
 
 /**
- * Provides the URL of the adapter that is defined in the configuration for the plugin.
- * This way, it can be used in web item links by using $url in velocity templates.
+ * Provides the URL of the adapter that is defined in the configuration for the plugin. This way, it can be used in web
+ * item links by using $url in velocity templates.
  */
 @Scanned
 public class UrlContextProvider implements ContextProvider {
@@ -53,5 +53,4 @@ public class UrlContextProvider implements ContextProvider {
         ctx.put("url", url);
         return ctx;
     }
-
 }

@@ -13,12 +13,12 @@
 
       <form class="data">
         <input type="hidden" name="jiraProjectId" value="$jiraProjectId">
-        <input type="hidden" name="testId" value="$testId">
+        <input type="hidden" name="jiraTestId" value="$jiraTestId">
       </form>
 
-      <div class="alex-list-group">
+      <div class="afj-list-group">
           #foreach($url in $alexProject.urls)
-            <div class="alex-list-group-item" data-id="$url.id">
+            <div class="afj-list-group-item" data-id="$url.id">
               <div>
                 <strong>
                     #if(!$url.name) Unnamed #else $url.name #end
