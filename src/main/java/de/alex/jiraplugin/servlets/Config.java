@@ -40,6 +40,12 @@ public class Config {
     @XmlElement
     private String issueType;
 
+    /**
+     * The key of the project where the ALEX button is displayed.
+     */
+    @XmlElement
+    private String projectKey;
+
     public String getUrl() {
         return url;
     }
@@ -54,5 +60,13 @@ public class Config {
 
     public void setIssueType(String issueType) {
         this.issueType = issueType;
+    }
+
+    public String getProjectKey() {
+        return projectKey;
+    }
+
+    public void setProjectKey(String projectKey) {
+        this.projectKey = projectKey;
     }
 }

@@ -6,10 +6,12 @@
 
     var url = $('#url').attr('value');
     var issueType = $('#issueType').attr('value');
+    var projectKey = $('#projectKey').attr('value');
 
     var data = JSON.stringify({
       url: url,
-      issueType: issueType
+      issueType: issueType,
+      projectKey: projectKey
     });
 
     $.ajax({
@@ -36,6 +38,7 @@
     }).done(function (config) {
       $('#url').val(config.url);
       $('#issueType').val(config.issueType);
+      $('#projectKey').val(config.projectKey);
     });
 
     // use the aui submit event so that the validation mechanism kicks in.

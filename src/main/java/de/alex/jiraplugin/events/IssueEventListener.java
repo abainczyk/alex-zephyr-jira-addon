@@ -79,8 +79,12 @@ public class IssueEventListener implements InitializingBean, DisposableBean {
         final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
         final String url = (String) settings.get(Config.class.getName() + ".url");
         final String issueTypeId = (String) settings.get(Config.class.getName() + ".issueType");
+        final String projectKey = (String) settings.get(Config.class.getName() + ".projectKey");
 
-        if (issueTypeId == null || issue.getIssueTypeId() == null || !issue.getIssueTypeId().equals(issueTypeId)) {
+        if (issueTypeId == null
+                || issue.getIssueTypeId() == null
+                || !issue.getIssueTypeId().equals(issueTypeId)
+                || !issue.getProjectObject().getKey().equals(projectKey)) {
             return;
         }
 

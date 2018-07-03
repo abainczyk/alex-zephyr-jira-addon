@@ -18,6 +18,7 @@ package de.alex.jiraplugin.conditions;
 
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.plugin.webfragment.model.JiraHelper;
+import com.atlassian.jira.project.Project;
 import com.atlassian.plugin.PluginParseException;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
@@ -51,6 +52,7 @@ public class DisplayAlexDropdownMenuCondition implements Condition {
     public boolean shouldDisplay(final Map<String, Object> context) {
         final JiraHelper helper = (JiraHelper) context.get("helper");
         final Issue issue = (Issue) helper.getContextParams().get("issue");
+        final Project project = (Project) helper.getContextParams().get("project");
 
         // do not display the section if we are not on a zephyr test page
         if (issue == null || issue.getIssueType() == null) {
@@ -60,8 +62,12 @@ public class DisplayAlexDropdownMenuCondition implements Condition {
         final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
         final String url = (String) settings.get(Config.class.getName() + ".url");
         final String issueType = (String) settings.get(Config.class.getName() + ".issueType");
+        final String projectKey = (String) settings.get(Config.class.getName() + ".projectKey");
 
-        // return true if the current issue type equals the configured one
-        return url != null && issueType.equals(issue.getIssueTypeId());
+        // return true if the current issue type equals the configured one and if the right project is used
+        return url != null
+                && issueType.equals(issue.getIssueTypeId())
+                && projectKey != null
+                && projectKey.equals(project.getKey());
     }
 }

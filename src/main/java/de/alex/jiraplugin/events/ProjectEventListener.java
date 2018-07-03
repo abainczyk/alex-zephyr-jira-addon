@@ -71,16 +71,21 @@ public class ProjectEventListener implements InitializingBean, DisposableBean {
 
     @EventListener
     public void onProjectDeletedEvent(final ProjectDeletedEvent projectEvent) {
+        final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+        final String url = (String) settings.get(Config.class.getName() + ".url");
+        final String projectKey = (String) settings.get(Config.class.getName() + ".projectKey");
         final Project project = projectEvent.getProject();
+
+        if (!project.getKey().equals(projectKey)) {
+            return;
+        }
+
         final String data = "{"
                 + "\"type\": \"PROJECT_DELETED\","
                 + ",\"projectId\": " + project.getId()
                 + ",\"projectName\": \"" + project.getName() + "\""
                 + ",\"timestamp\": \"" + Timestamp.from(Instant.now()).toString() + "\""
                 + "}";
-
-        final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-        final String url = (String) settings.get(Config.class.getName() + ".url");
 
         new Thread(() -> client.resource(url + "/rest/wh/jira/projects")
                 .entity(data)
@@ -89,5 +94,4 @@ public class ProjectEventListener implements InitializingBean, DisposableBean {
                 .post(ClientResponse.class)
         ).start();
     }
-
 }

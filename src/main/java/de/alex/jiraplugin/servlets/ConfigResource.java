@@ -18,6 +18,7 @@ package de.alex.jiraplugin.servlets;
 
 import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.issue.issuetype.IssueType;
+import com.atlassian.jira.project.Project;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
@@ -124,6 +125,7 @@ public class ConfigResource {
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response put(final Config config, @Context final HttpServletRequest request) {
         final UserProfile user = userManager.getRemoteUser(request);
         if (user == null || user.getUsername() == null || !userManager.isSystemAdmin(user.getUserKey())) {
@@ -139,6 +141,17 @@ public class ConfigResource {
         if (config.getIssueType() == null) {
             final RestError error = new RestError(Response.Status.BAD_REQUEST, "The issue type may not be empty.");
             return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
+        }
+
+        if (config.getProjectKey() == null || config.getProjectKey().equals("")) {
+            final RestError error = new RestError(Response.Status.BAD_REQUEST, "The project key may not be empty.");
+            return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
+        } else {
+            final Project project = ComponentAccessor.getProjectManager().getProjectByCurrentKey(config.getProjectKey());
+            if (project == null) {
+                final RestError error = new RestError(Response.Status.BAD_REQUEST, "A project with the key '" + config.getProjectKey() + "' could not be found.");
+                return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
+            }
         }
 
         final List<IssueType> issueTypes = new ArrayList<>(ComponentAccessor.getConstantsManager().getAllIssueTypeObjects());
@@ -157,6 +170,7 @@ public class ConfigResource {
             PluginSettings pluginSettings = pluginSettingsFactory.createGlobalSettings();
             pluginSettings.put(Config.class.getName() + ".url", url);
             pluginSettings.put(Config.class.getName() + ".issueType", config.getIssueType());
+            pluginSettings.put(Config.class.getName() + ".projectKey", config.getProjectKey());
             return null;
         });
 

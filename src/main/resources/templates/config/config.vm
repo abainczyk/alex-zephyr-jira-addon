@@ -58,6 +58,16 @@
           #end
       </select>
     </div>
+    <div class="field-group top-label">
+      <label for="name">The <strong>key</strong> of the project</label>
+      <input
+          type="text"
+          id="projectKey"
+          name="projectKey"
+          class="text"
+          required
+      >
+    </div>
     <div class="field-group">
       <input type="submit" value="Save" class="button">
     </div>
