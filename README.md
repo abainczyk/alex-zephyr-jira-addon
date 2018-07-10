@@ -25,10 +25,10 @@ The add-on has been developed with, but is not necessarily limited to the follow
 
 * Windows 10
 * Java JRE 8
-* [Jira Server][jira] v7.8.1 with:
-    * [Zephyr for Jira][zephyr] v3.6.3 add-on
+* [Jira Server][jira] v7.9.2 with:
+    * [Zephyr for Jira][zephyr] v3.6.4 add-on
     * [ZAPI][zapi] v2.6.0 add-on
-* [ALEX][alex] v1.5.1
+* [ALEX][alex] v1.6.0
 * [ALEX Adapter][alex-adapter] v1.0.0
 
 Note that if ALEX and Jira are installed on different machines in the same network, make sure they can reach each other.
@@ -47,7 +47,7 @@ atlas-mvn clean package
 ```
 
 The generated add-on is then be located in the `target` directory.
-The file is called `alex-for-jira-1.0.0-SNAPSHOT.jar`.
+The file is called `alex-for-jira-1.0.0.jar`.
 
 
 ## Installation
@@ -70,8 +70,10 @@ In the following, we assume that the adapter is installed locally at *http://loc
 3. In the displayed form
     1. Enter the base URL of the ALEX adapter, without trailing *"/"*.
        E.g. *http://localhost:9000* and not *http://localhost:9000/*.
-    2. Select the correct issue type for tests that is registered by the Zephyr add-on from the dropdown menu.
+    2. Enter the email and password of an admin account in the ALEX adapter.
+    3. Select the correct issue type for tests that is registered by the Zephyr add-on from the dropdown menu.
        Normally, this is the type *"Test"*.
+    4. Enter the **key** of the project that the add-on should be activated for.
 4. Click on save.
 
 Now, on every issue that is a Zephyr test, a dropdown menu with the label *"ALEX"* should be visible in the operations bar.
