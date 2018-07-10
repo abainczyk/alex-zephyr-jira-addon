@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.servlets;
+package de.alex.alexforjira.servlets;
 
 import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.issue.issuetype.IssueType;
@@ -26,7 +26,7 @@ import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserManager;
 import com.atlassian.sal.api.user.UserProfile;
-import de.alex.jiraplugin.utils.RestError;
+import de.alex.alexforjira.utils.RestError;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.conditions;
+package de.alex.alexforjira.conditions;
 
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.plugin.webfragment.model.JiraHelper;
@@ -25,7 +25,7 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.plugin.web.Condition;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
-import de.alex.jiraplugin.servlets.Config;
+import de.alex.alexforjira.servlets.Config;
 
 import javax.inject.Inject;
 import java.util.Map;

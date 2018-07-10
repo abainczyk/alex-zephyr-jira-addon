@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.providers;
+package de.alex.alexforjira.providers;
 
 import com.atlassian.plugin.PluginParseException;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
@@ -22,7 +22,7 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.plugin.web.ContextProvider;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
-import de.alex.jiraplugin.servlets.Config;
+import de.alex.alexforjira.servlets.Config;
 
 import javax.inject.Inject;
 import java.util.Map;

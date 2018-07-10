@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.plugin.impl;
+package de.alex.alexforjira.plugin.impl;
 
 import com.atlassian.plugin.spring.scanner.annotation.export.ExportAsService;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.ApplicationProperties;
-import de.alex.jiraplugin.plugin.api.AlexForJiraComponent;
+import de.alex.alexforjira.plugin.api.AlexForJiraComponent;
 
 import javax.inject.Inject;
 import javax.inject.Named;

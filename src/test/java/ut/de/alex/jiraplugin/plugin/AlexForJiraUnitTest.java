@@ -1,7 +1,7 @@
 package ut.de.alex.jiraplugin.plugin;
 
-import de.alex.jiraplugin.plugin.api.AlexForJiraComponent;
-import de.alex.jiraplugin.plugin.impl.AlexForJiraComponentImpl;
+import de.alex.alexforjira.plugin.api.AlexForJiraComponent;
+import de.alex.alexforjira.plugin.impl.AlexForJiraComponentImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

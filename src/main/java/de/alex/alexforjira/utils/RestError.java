@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.utils;
+package de.alex.alexforjira.utils;
 
 import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlRootElement;

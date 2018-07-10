@@ -37,7 +37,7 @@
   <!-- The ALEX dropdown menu that is displayed in the operations bar of an issue -->
   <web-section key="afj-opsbar-operations" name="Operations Section" location="view.issue.opsbar" weight="200">
     <label key="afj-opsbar.more.operations"/>
-    <condition class="de.alex.jiraplugin.conditions.DisplayAlexDropdownMenuCondition">
+    <condition class="de.alex.alexforjira.conditions.DisplayAlexDropdownMenuCondition">
       <param name="issue">$issue</param>
     </condition>
     <param name="iconClass" value="aui-icon aui-icon-small aui-iconfont-comment icon-comment" />
@@ -68,7 +68,7 @@
   <webwork1 key="execute-test-dialog" name="Execute test dialog" i18n-name-key="execute-test-dialog.name">
     <description key="execute-test-dialog.description"/>
     <actions>
-      <action name="de.alex.jiraplugin.dialogs.ExecuteTestDialog" alias="ExecuteTestDialog">
+      <action name="de.alex.alexforjira.dialogs.ExecuteTestDialog" alias="ExecuteTestDialog">
         <view name="error">/templates/execute-test-dialog/error.vm</view>
         <view name="dialog">/templates/execute-test-dialog/dialog.vm</view>
       </action>
@@ -90,7 +90,7 @@
 
 
   <!-- servlet for the plugin configuration -->
-  <servlet key="config-page-servlet" name="Config page" i18n-name-key="config-page-servlet.name" class="de.alex.jiraplugin.servlets.ConfigServlet">
+  <servlet key="config-page-servlet" name="Config page" i18n-name-key="config-page-servlet.name" class="de.alex.alexforjira.servlets.ConfigServlet">
     <description key="config-servlet.description"/>
     <url-pattern>/alex/config</url-pattern>
   </servlet>

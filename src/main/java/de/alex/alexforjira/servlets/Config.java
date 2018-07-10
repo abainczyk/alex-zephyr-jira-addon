@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.servlets;
+package de.alex.alexforjira.servlets;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

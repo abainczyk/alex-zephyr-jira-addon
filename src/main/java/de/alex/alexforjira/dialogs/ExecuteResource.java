@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.dialogs;
+package de.alex.alexforjira.dialogs;
 
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.sun.jersey.api.client.ClientResponse;
-import de.alex.jiraplugin.servlets.Config;
-import de.alex.jiraplugin.utils.Endpoints;
-import de.alex.jiraplugin.utils.RestError;
+import de.alex.alexforjira.servlets.Config;
+import de.alex.alexforjira.utils.Endpoints;
+import de.alex.alexforjira.utils.RestError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

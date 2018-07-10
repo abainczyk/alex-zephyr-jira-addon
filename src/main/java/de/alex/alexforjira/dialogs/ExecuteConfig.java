@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.dialogs;
+package de.alex.alexforjira.dialogs;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

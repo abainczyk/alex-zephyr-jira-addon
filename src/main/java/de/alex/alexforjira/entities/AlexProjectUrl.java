@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.entities;
+package de.alex.alexforjira.entities;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

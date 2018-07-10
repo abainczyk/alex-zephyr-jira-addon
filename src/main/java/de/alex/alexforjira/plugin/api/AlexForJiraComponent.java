@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.plugin.api;
+package de.alex.alexforjira.plugin.api;
 
 public interface AlexForJiraComponent {
     String getName();

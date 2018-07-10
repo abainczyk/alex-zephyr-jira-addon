@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.events;
+package de.alex.alexforjira.events;
 
 import com.atlassian.event.api.EventListener;
 import com.atlassian.event.api.EventPublisher;
@@ -26,8 +26,8 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.sun.jersey.api.client.ClientResponse;
-import de.alex.jiraplugin.servlets.Config;
-import de.alex.jiraplugin.utils.Endpoints;
+import de.alex.alexforjira.servlets.Config;
+import de.alex.alexforjira.utils.Endpoints;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;

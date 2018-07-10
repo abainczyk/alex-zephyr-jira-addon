@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.dialogs;
+package de.alex.alexforjira.dialogs;
 
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.IssueManager;
@@ -24,9 +24,9 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.sun.jersey.api.client.ClientResponse;
-import de.alex.jiraplugin.entities.AlexProject;
-import de.alex.jiraplugin.servlets.Config;
-import de.alex.jiraplugin.utils.Endpoints;
+import de.alex.alexforjira.entities.AlexProject;
+import de.alex.alexforjira.servlets.Config;
+import de.alex.alexforjira.utils.Endpoints;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

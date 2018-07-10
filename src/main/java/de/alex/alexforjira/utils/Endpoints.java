@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.alex.jiraplugin.utils;
+package de.alex.alexforjira.utils;
 
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
@@ -23,7 +23,7 @@ import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.Base64;
-import de.alex.jiraplugin.servlets.Config;
+import de.alex.alexforjira.servlets.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
