@@ -24,17 +24,14 @@ import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
-import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import de.alex.jiraplugin.servlets.Config;
-import de.alex.jiraplugin.utils.ClientUtils;
+import de.alex.jiraplugin.utils.Endpoints;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -49,31 +46,31 @@ public class ProjectEventListener implements InitializingBean, DisposableBean {
     @ComponentImport
     private final PluginSettingsFactory pluginSettingsFactory;
 
-    /** The HTTP client. */
-    private final Client client;
+    private final Endpoints endpoints;
 
     @Inject
-    public ProjectEventListener(EventPublisher eventPublisher, PluginSettingsFactory pluginSettingsFactory) {
+    public ProjectEventListener(EventPublisher eventPublisher,
+                                PluginSettingsFactory pluginSettingsFactory,
+                                Endpoints endpoints) {
         this.eventPublisher = eventPublisher;
         this.pluginSettingsFactory = pluginSettingsFactory;
-        this.client = ClientUtils.createDefaultClient();
+        this.endpoints = endpoints;
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         eventPublisher.register(this);
     }
 
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         eventPublisher.unregister(this);
     }
 
     @EventListener
     public void onProjectDeletedEvent(final ProjectDeletedEvent projectEvent) {
         final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-        final String url = (String) settings.get(Config.class.getName() + ".url");
-        final String projectKey = (String) settings.get(Config.class.getName() + ".projectKey");
+        final String projectKey = (String) settings.get(Config.PROJECT_KEY_PROPERTY);
         final Project project = projectEvent.getProject();
 
         if (!project.getKey().equals(projectKey)) {
@@ -87,10 +84,8 @@ public class ProjectEventListener implements InitializingBean, DisposableBean {
                 + ",\"timestamp\": \"" + Timestamp.from(Instant.now()).toString() + "\""
                 + "}";
 
-        new Thread(() -> client.resource(url + "/rest/wh/jira/projects")
+        new Thread(() -> endpoints.projectEvents()
                 .entity(data)
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
-                .accept(MediaType.MEDIA_TYPE_WILDCARD)
                 .post(ClientResponse.class)
         ).start();
     }

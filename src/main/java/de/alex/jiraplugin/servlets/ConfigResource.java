@@ -86,12 +86,16 @@ public class ConfigResource {
             final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
             final Config config = new Config();
 
-            final String url = (String) settings.get(Config.class.getName() + ".url");
-            if (url != null) {
-                config.setUrl(url);
-            }
+            final String url = (String) settings.get(Config.URL_PROPERTY);
+            config.setUrl(url);
 
-            final String issueTypeId = (String) settings.get(Config.class.getName() + ".issueType");
+            final String email = (String) settings.get(Config.EMAIL_PROPERTY);
+            config.setEmail(email);
+
+            final String password = (String) settings.get(Config.PASSWORD_PROPERTY);
+            config.setPassword(password);
+
+            final String issueTypeId = (String) settings.get(Config.ISSUE_TYPE_PROPERTY);
             if (issueTypeId != null) {
                 config.setIssueType(issueTypeId);
             } else if (issueTypes.size() > 0) {
@@ -109,6 +113,9 @@ public class ConfigResource {
                     config.setIssueType(issueTypes.get(0).getId());
                 }
             }
+
+            final String projectKey = (String) settings.get(Config.PROJECT_KEY_PROPERTY);
+            config.setProjectKey(projectKey);
 
             return config;
         })).build();
@@ -135,6 +142,16 @@ public class ConfigResource {
 
         if (config.getUrl() == null || config.getUrl().trim().equals("")) {
             final RestError error = new RestError(Response.Status.BAD_REQUEST, "The URL may not be empty.");
+            return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
+        }
+
+        if (config.getEmail() == null || config.getEmail().trim().equals("")) {
+            final RestError error = new RestError(Response.Status.BAD_REQUEST, "The email may not be empty.");
+            return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
+        }
+
+        if (config.getPassword() == null || config.getPassword().trim().equals("")) {
+            final RestError error = new RestError(Response.Status.BAD_REQUEST, "The password may not be empty.");
             return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
         }
 
@@ -168,9 +185,12 @@ public class ConfigResource {
             url = url.endsWith("/") ? url.substring(0, url.length() - 1) : url;
 
             PluginSettings pluginSettings = pluginSettingsFactory.createGlobalSettings();
-            pluginSettings.put(Config.class.getName() + ".url", url);
-            pluginSettings.put(Config.class.getName() + ".issueType", config.getIssueType());
-            pluginSettings.put(Config.class.getName() + ".projectKey", config.getProjectKey());
+            pluginSettings.put(Config.URL_PROPERTY, url);
+            pluginSettings.put(Config.EMAIL_PROPERTY, config.getEmail());
+            pluginSettings.put(Config.PASSWORD_PROPERTY, config.getPassword());
+            pluginSettings.put(Config.ISSUE_TYPE_PROPERTY, config.getIssueType());
+            pluginSettings.put(Config.PROJECT_KEY_PROPERTY, config.getProjectKey());
+
             return null;
         });
 

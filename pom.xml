@@ -13,7 +13,7 @@
     <packaging>atlassian-plugin</packaging>
 
     <properties>
-        <jira.version>7.6.1</jira.version>
+        <jira.version>7.9.2</jira.version>
         <amps.version>6.3.14</amps.version>
         <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
         <atlassian.spring.scanner.version>1.2.13</atlassian.spring.scanner.version>

@@ -49,7 +49,7 @@ public class UrlContextProvider implements ContextProvider {
     @Override
     public Map<String, Object> getContextMap(final Map<String, Object> ctx) {
         final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-        final String url = (String) settings.get(Config.class.getName() + ".url");
+        final String url = (String) settings.get(Config.URL_PROPERTY);
         ctx.put("url", url);
         return ctx;
     }

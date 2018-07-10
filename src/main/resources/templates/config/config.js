@@ -5,11 +5,15 @@
     $('#messages').empty();
 
     var url = $('#url').attr('value');
+    var email = $('#email').attr('value');
+    var password = $('#password').attr('value');
     var issueType = $('#issueType').attr('value');
     var projectKey = $('#projectKey').attr('value');
 
     var data = JSON.stringify({
       url: url,
+      email: email,
+      password: password,
       issueType: issueType,
       projectKey: projectKey
     });
@@ -37,6 +41,8 @@
       dataType: 'json'
     }).done(function (config) {
       $('#url').val(config.url);
+      $('#email').val(config.email);
+      $('#password').val(config.password);
       $('#issueType').val(config.issueType);
       $('#projectKey').val(config.projectKey);
     });

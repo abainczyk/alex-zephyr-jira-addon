@@ -23,11 +23,10 @@ import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
-import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import de.alex.jiraplugin.entities.AlexProject;
 import de.alex.jiraplugin.servlets.Config;
-import de.alex.jiraplugin.utils.ClientUtils;
+import de.alex.jiraplugin.utils.Endpoints;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,10 +34,10 @@ import javax.inject.Inject;
 
 @Scanned
 public class ExecuteTestDialog extends JiraWebActionSupport {
+
     private static final Logger log = LoggerFactory.getLogger(ExecuteTestDialog.class);
 
-    /** The HTTP client. */
-    private final Client client;
+    private final Endpoints endpoints;
 
     /** The error message to display. */
     private String errorMessage = "";
@@ -59,15 +58,18 @@ public class ExecuteTestDialog extends JiraWebActionSupport {
     private final IssueManager issueManager;
 
     @Inject
-    public ExecuteTestDialog(PluginSettingsFactory pluginSettingsFactory, IssueManager issueManager) {
+    public ExecuteTestDialog(PluginSettingsFactory pluginSettingsFactory, IssueManager issueManager,
+                             Endpoints endpoints) {
         this.pluginSettingsFactory = pluginSettingsFactory;
         this.issueManager = issueManager;
-        this.client = ClientUtils.createDefaultClient();
+        this.endpoints = endpoints;
     }
 
     public String doExecute() {
+        log.info("Entering doExecute()");
+
         final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-        final String url = (String) settings.get(Config.class.getName() + ".url");
+        final String url = (String) settings.get(Config.URL_PROPERTY);
 
         if (url == null) {
             errorMessage = "The plugin has not been configured yet.";
@@ -85,16 +87,20 @@ public class ExecuteTestDialog extends JiraWebActionSupport {
 
         try {
             // get ALEX project that is mapped to the current project
-            final ClientResponse response = ClientUtils.createDefaultResource(client, url + "/rest/alex/projects/byJiraProject/" + jiraProjectId)
+            final ClientResponse response = endpoints.alexProject(Long.valueOf(jiraProjectId))
                     .get(ClientResponse.class);
 
+            log.info("get ALEX project: " + response.getStatus());
             alexProject = response.getEntity(AlexProject.class);
 
             return "dialog";
         } catch (Exception e) {
             e.printStackTrace();
             errorMessage = e.getMessage();
+            log.error("could not get ALEX project - {}" + errorMessage);
             return "error";
+        } finally {
+            log.info("Leaving doExecute()");
         }
     }
 

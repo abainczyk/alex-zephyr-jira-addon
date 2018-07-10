@@ -27,9 +27,10 @@
 <div id="messages"></div>
 
 <form id="config-form" class="aui top-label">
+  <h3>ALEX Adapter</h3>
   <fieldset class="top-label">
     <div class="field-group top-label">
-      <label for="name">URL of the ALEX for Jira adapter</label>
+      <label for="name">URL (without trailing slash)</label>
       <input
           type="url"
           id="url"
@@ -44,6 +45,34 @@
       >
     </div>
     <div class="field-group top-label">
+      <label for="name">Email</label>
+      <input
+          type="email"
+          id="email"
+          name="email"
+          class="text"
+          value=""
+          required
+          data-aui-validation-field
+      >
+    </div>
+    <div class="field-group top-label">
+      <label for="name">Password</label>
+      <input
+          type="password"
+          id="password"
+          name="password"
+          class="text"
+          value=""
+          required
+          data-aui-validation-field
+      >
+    </div>
+  </fieldset>
+
+  <h3>Jira</h3>
+  <fieldset class="top-label">
+    <div class="field-group top-label">
       <label for="name">Issue type where ALEX related actions are displayed</label>
       <select
           id="issueType"
@@ -53,9 +82,9 @@
           data-aui-validation-field
           data-aui-validation-required>
 
-          #foreach($issueType in $issueTypes)
-            <option value="$issueType.getId()">$issueType.getName()</option>
-          #end
+        #foreach($issueType in $issueTypes)
+          <option value="$issueType.getId()">$issueType.getName()</option>
+        #end
       </select>
     </div>
     <div class="field-group top-label">
@@ -68,6 +97,11 @@
           required
       >
     </div>
+  </fieldset>
+
+  <hr>
+
+  <fieldset class="top-label">
     <div class="field-group">
       <input type="submit" value="Save" class="button">
     </div>

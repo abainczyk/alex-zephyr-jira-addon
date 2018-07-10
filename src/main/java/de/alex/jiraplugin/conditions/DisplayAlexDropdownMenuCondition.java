@@ -60,9 +60,9 @@ public class DisplayAlexDropdownMenuCondition implements Condition {
         }
 
         final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-        final String url = (String) settings.get(Config.class.getName() + ".url");
-        final String issueType = (String) settings.get(Config.class.getName() + ".issueType");
-        final String projectKey = (String) settings.get(Config.class.getName() + ".projectKey");
+        final String url = (String) settings.get(Config.URL_PROPERTY);
+        final String issueType = (String) settings.get(Config.ISSUE_TYPE_PROPERTY);
+        final String projectKey = (String) settings.get(Config.PROJECT_KEY_PROPERTY);
 
         // return true if the current issue type equals the configured one and if the right project is used
         return url != null

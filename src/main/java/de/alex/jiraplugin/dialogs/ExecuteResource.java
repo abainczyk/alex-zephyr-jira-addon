@@ -20,11 +20,12 @@ import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
-import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import de.alex.jiraplugin.servlets.Config;
-import de.alex.jiraplugin.utils.ClientUtils;
+import de.alex.jiraplugin.utils.Endpoints;
 import de.alex.jiraplugin.utils.RestError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -39,16 +40,17 @@ import javax.ws.rs.core.Response;
 @Scanned
 public class ExecuteResource {
 
+    private static final Logger log = LoggerFactory.getLogger(ExecuteResource.class);
+
     @ComponentImport
     private final PluginSettingsFactory pluginSettingsFactory;
 
-    /** The HTTP client. */
-    private final Client client;
+    private final Endpoints endpoints;
 
     @Inject
-    public ExecuteResource(PluginSettingsFactory pluginSettingsFactory) {
+    public ExecuteResource(PluginSettingsFactory pluginSettingsFactory, Endpoints endpoints) {
         this.pluginSettingsFactory = pluginSettingsFactory;
-        this.client = ClientUtils.createDefaultClient();
+        this.endpoints = endpoints;
     }
 
     /**
@@ -62,8 +64,10 @@ public class ExecuteResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response execute(ExecuteConfig config) {
+        log.info("Entering execute(config: {})", config);
+
         final PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-        final String url = (String) settings.get(Config.class.getName() + ".url");
+        final String url = (String) settings.get(Config.URL_PROPERTY);
 
         if (url == null) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -72,19 +76,22 @@ public class ExecuteResource {
         }
 
         try {
-            final ClientResponse response = ClientUtils.createDefaultResource(client, url + "/rest/jira/projects/" + config.getJiraProjectId() + "/tests/" + config.getJiraTestId() + "/execute")
+            final ClientResponse response = endpoints.executeTest(config.getJiraProjectId(), config.getJiraTestId())
                     .entity(config)
                     .post(ClientResponse.class);
 
             if (response.getStatus() == 200) {
+                log.info("Leaving execute() with status {}", Response.Status.OK);
                 return Response.ok().build();
             } else {
+                log.error("Leaving execute() with status {}", Response.Status.BAD_REQUEST);
                 return Response.status(Response.Status.BAD_REQUEST)
                         .entity(response.getEntity(String.class))
                         .build();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            log.error("Leaving execute() with status {}", Response.Status.BAD_REQUEST);
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(new RestError(Response.Status.BAD_REQUEST, e.getMessage()))
                     .build();
