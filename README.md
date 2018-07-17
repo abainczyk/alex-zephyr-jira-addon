@@ -80,7 +80,7 @@ Now, on every issue that is a Zephyr test, a dropdown menu with the label *"ALEX
 
 
 [alex]: https://github.com/learnlib/alex
-[alex-adapter]: https://bitbucket.org/abainczyk/alex-zephyr-jira-adapter
+[alex-adapter]: https://github.com/abainczyk/alex-zephyr-jira-adapter
 [jira]: https://de.atlassian.com/software/jira/download
 [zephyr]: https://marketplace.atlassian.com/apps/1014681/zephyr-for-jira-test-management?hosting=server
 [zapi]: https://marketplace.atlassian.com/apps/1211674/zapi?hosting=server&tab=overview
